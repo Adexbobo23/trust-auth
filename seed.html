@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multi-coin wallet</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: white;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .back-arrow {
+            color: #666;
+            font-size: 24px;
+            text-decoration: none;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 500;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .expand-icon {
+            color: #666;
+            font-size: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .label {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .input-container {
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .text-input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .clear-button {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #ddd;
+            border: none;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .textarea {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+            resize: none;
+        }
+
+        .paste-button {
+            position: absolute;
+            right: 15px;
+            bottom: 15px;
+            background: none;
+            border: none;
+            color: blue;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .helper-text {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .restore-button {
+            width: 100%;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            color: #666;
+            cursor: pointer;
+            margin-top: 30px;
+        }
+
+        .help-link {
+            display: block;
+            text-align: center;
+            color: blue;
+            text-decoration: none;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="#" class="back-arrow">←</a>
+        <h1 class="title">Multi-coin wallet</h1>
+        <span class="expand-icon">⤢</span>
+    </div>
+
+    <div class="form-group">
+        <div class="label">Wallet name</div>
+        <div class="input-container">
+            <input type="text" class="text-input" value="Main Wallet">
+            <button class="clear-button">×</button>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="label">Secret phrase</div>
+        <div class="input-container">
+            <textarea class="textarea"></textarea>
+            <button class="paste-button">Paste</button>
+        </div>
+        <div class="helper-text">
+            Typically 12 (sometimes 18, 24) words separated by single spaces
+        </div>
+    </div>
+
+    <button class="restore-button">Restore wallet</button>
+
+    <a href="#" class="help-link">What is a secret phrase?</a>
+</body>
+</html>
